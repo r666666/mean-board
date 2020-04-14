@@ -1,0 +1,12 @@
+@import './variables';
+
+.no-style {
+  background: none;
+  border: 0;
+  outline: none;
+  padding: 0;
+
+  &:focus {
+    outline: none;
+  }
+}

@@ -1,0 +1,107 @@
+@import './mixins';
+
+$main-palette: (
+  50 : #e2f3fd,
+  100 : #b7e1fb,
+  200 : #88cef8,
+  300 : #58baf5,
+  400 : #34abf3,
+  500 : #109cf1,
+  600 : #0e94ef,
+  700 : #0c8aed,
+  800 : #0980eb,
+  900 : #056ee7,
+  A100 : #ffffff,
+  A200 : #dbeaff,
+  A400 : #a8ccff,
+  A700 : #8fbdff,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #000000,
+    400 : #000000,
+    500 : #ffffff,
+    600 : #ffffff,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #000000,
+    A400 : #000000,
+    A700 : #000000,
+  )
+);
+
+$divider: #E5E5E5;
+
+$black: #192A3E;
+$table-black: #323C47;
+$table-gray: #9E9E9E;
+
+$dark-blue-text: #334d63;
+$gray: #90A0B7;
+$icon-gray: rgba(0, 0, 0, 0.54);
+$icon-light-gray: rgba(0, 0, 0, 0.24);
+
+$white: #FFFFFF;
+
+//Main
+$main-fs: 14px;
+$main-ff: 'Roboto', sans-serief;
+
+$main-fw: 400;
+$medium-fw: 500;
+$semibold-fw: 600;
+
+$module: 10px;
+$main-lh: ($module * 2 / $main-fs);
+$module-rem: ($module / $main-fs) * 1rem;
+$animation: ease-in-out;
+
+$primary-color:#2196F3;
+$primary-color-dark: #1976D2;
+$main-bg: #FBFCFD;
+$main-bg-dark: #2B3648;
+$main-color: rgba(0, 0, 0, 0.6);
+$main-color-dark: #56657F;
+$boxed-width: 1140px;
+
+$side-nav-width: toRem(256px);
+$side-nav-width-tablet: toRem(640px);
+$side-nav-width-mobile: toRem(304px);
+$side-nav-bg-dark: #212936;
+
+$top-bar-height: toRem(56px);
+$top-nav-bg-dark: #212936;
+
+:root {
+  --main-color: #90A0B7;
+  --main-bg: #E5E5E5;
+  --boxed-width: 1140px;
+}
+
+$shape: 4px;
+$shadow: 6px 6px 20px 0 rgba(0, 0, 0, 0.08);
+$secondary-shadow: 0px 2px 4px rgba(0, 0, 0, 0.14), 
+                   0px 3px 4px rgba(0, 0, 0, 0.12), 
+                   0px 1px 5px rgba(0, 0, 0, 0.2);
+$shadow-hover: 3px 3px 10px 0 rgba(0, 0, 0, 0.15);
+
+$animation: ease-in-out;
+
+//Headers
+$headers-ff: $main-ff;
+$headers-fw: $medium-fw;
+$header-color: rgba(0, 0, 0, 0.87);
+$header-color-dark: #AFBDD1;
+
+//Media
+$max543 : only screen and (max-width: 543px);
+$min544 : only screen and (min-width: 544px);
+$max767 : only screen and (max-width: 767px);
+$min768 : only screen and (min-width: 768px);
+$max991 : only screen and (max-width: 991px);
+$min992 : only screen and (min-width: 992px);
+$max1199 : only screen and (max-width: 1199px);
+$min1200 : only screen and (min-width: 1200px);
