@@ -1,0 +1,138 @@
+@import './mixins';
+
+//Main palette
+$palette: (
+  50 : #b9b9d8,
+  100 : #a8a8cf,
+  200 : #9898c6,
+  300 : #8787bd,
+  400 : #7777b4,
+  500 : #6767ab,
+  600 : #5858a0,
+  700 : #4f4f8f,
+  800 : #46467f,
+  900 : #3d3d6f,
+  A100 : #52ffff,
+  A200 : #1fffff,
+  A400 : #00ebeb,
+  A700 : #00d2d2,
+  contrast: (
+    50 : #07070c,
+    100 : #07070c,
+    200 : #07070c,
+    300 : #ffffff,
+    400 : #ffffff,
+    500 : #ffffff,
+    600 : #ffffff,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #07070c,
+    A200 : #07070c,
+    A400 : #07070c,
+    A700 : #07070c,
+  )
+);
+@function main-palette($key: $palette) {
+  @return map-get($palette, $key);
+}
+@function main-contrast($key: $palette) {
+  @return map-get(map-get($palette, contrast), $key);
+}
+
+//Accent palette
+$accent-palette: (
+  50 : #feb7b7,
+  100 : #fea8a8,
+  200 : #fe9a99,
+  300 : #fd8b89,
+  400 : #fd7c7a,
+  500 : #fd6d6b,
+  600 : #fd5e5c,
+  700 : #fc4f4d,
+  800 : #fc403e,
+  900 : #fc312f,
+  A100 : #ffffff,
+  A200 : #fea8a8,
+  A400 : #fea8a8,
+  A700 : #fea8a8,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #000000,
+    400 : #000000,
+    500 : #ffffff,
+    600 : #ffffff,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #000000,
+    A400 : #000000,
+    A700 : #000000,
+  )
+);
+@function accent-palette($key: $accent-palette) {
+  @return map-get($accent-palette, $key);
+}
+@function accent-contrast($key: $accent-palette) {
+  @return map-get(map-get($accent-palette, contrast), $key);
+}
+
+:root {
+  --main-color: #687089;
+  --main-bg: #F2F4F5;
+  --boxed-width: 1140px;
+}
+$main-color: #687089;
+$main-bg: #F2F4F5;
+$boxed-width: 1140px;
+
+$success-color: #27AE60;
+$success-contrast: #E3F5EB;
+$info-color: #64B5F6;
+$info-contrast: #000;
+$warning-color: #e9e165;
+$warning-contrast: #000;
+$error-color: #FD4745;
+$error-contrast: #FFEBEB;
+
+//Main
+$main-fs: 14px;
+$main-ff: 'Lato', sans-serif;
+$main-fw: 400;
+$module: 10px;
+$main-lh: ($module * 2 / $main-fs);
+$module-rem: ($module / $main-fs) * 1rem;
+$shape: 15px;
+$shadow: 0 18px 24px rgba(#000,.12);
+$shadow-hover: 0px 8px 24px rgba(#000,.12);
+$animation: ease-in-out;
+
+//Second
+$second-ff: $main-ff;
+$secondary-color: #A2A5B2;
+
+//Media
+$max543 : only screen and (max-width: 543px);
+$min544 : only screen and (min-width: 544px);
+$max767 : only screen and (max-width: 767px);
+$min768 : only screen and (min-width: 768px);
+$max991 : only screen and (max-width: 991px);
+$min992 : only screen and (min-width: 992px);
+$max1199 : only screen and (max-width: 1199px);
+$min1200 : only screen and (min-width: 1200px);
+
+//Headers
+$headers-ff: $second-ff;
+$headers-fw: 700;
+$header-color: #303139;
+
+//Navbar
+$navbar-bg: #eeeeef;
+$navbar-color: rgba(main-palette(500),.5);
+$vertical-navbar-mini-width: $module-rem * 10;
+$vertical-navbar-width: $module-rem * 24;
+
+
