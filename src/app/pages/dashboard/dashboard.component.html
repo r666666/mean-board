@@ -1,1 +1,5 @@
-<p>Dashboard works!</p>
+<ul class="boards-wrap">
+  <li class="board-wrap" *ngFor="let board of boards">
+    <a class="board-link" routerLink="{{ board.address }}">{{ board.name }}</a>
+  </li>
+</ul>

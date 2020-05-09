@@ -3,6 +3,7 @@ import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
 import { LayoutModule } from '../layout/layout.module';
+
 import { BasePageComponent } from './base-page/base-page.component';
 import { PageDashboardComponent } from './dashboard';
 
@@ -12,9 +13,9 @@ import { PageDashboardComponent } from './dashboard';
     BasePageComponent
   ],
   imports: [
-    RouterModule,
     CommonModule,
-    LayoutModule
+    LayoutModule,
+    RouterModule
   ],
   exports: []
 })

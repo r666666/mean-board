@@ -1,28 +1,33 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
-import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
+import { BoardService } from './services/board/board.service';
 import { AppComponent } from './app.component';
+import { ROUTES, RoutingModule } from './routing/routing.module';
 import { LayoutModule } from './layout/layout.module';
 import { PagesModule } from './pages/pages.module';
-import { AppRoutingModule, ROUTES } from './routing/app-routing.module';
 
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
-    PagesModule,
-    LayoutModule,
     BrowserModule,
-    HttpClientModule,
-    AppRoutingModule,
-    RouterModule.forRoot(ROUTES, { useHash: true }),
     BrowserAnimationsModule,
+    HttpClientModule,
+    RouterModule.forRoot(ROUTES),
+    RoutingModule,
+    LayoutModule,
+    PagesModule
   ],
-  providers: [],
+  providers: [
+    { provide: LocationStrategy, useClass: HashLocationStrategy },
+    BoardService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

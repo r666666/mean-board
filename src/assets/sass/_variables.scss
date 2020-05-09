@@ -1,20 +1,61 @@
 @import './mixins';
 
-$main-palette: (
-  50 : #e2f3fd,
-  100 : #b7e1fb,
-  200 : #88cef8,
-  300 : #58baf5,
-  400 : #34abf3,
-  500 : #109cf1,
-  600 : #0e94ef,
-  700 : #0c8aed,
-  800 : #0980eb,
-  900 : #056ee7,
+//Main palette
+$palette: (
+  50 : #b9b9d8,
+  100 : #a8a8cf,
+  200 : #9898c6,
+  300 : #8787bd,
+  400 : #7777b4,
+  500 : #6767ab,
+  600 : #5858a0,
+  700 : #4f4f8f,
+  800 : #46467f,
+  900 : #3d3d6f,
+  A100 : #52ffff,
+  A200 : #1fffff,
+  A400 : #00ebeb,
+  A700 : #00d2d2,
+  contrast: (
+    50 : #07070c,
+    100 : #07070c,
+    200 : #07070c,
+    300 : #ffffff,
+    400 : #ffffff,
+    500 : #ffffff,
+    600 : #ffffff,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #07070c,
+    A200 : #07070c,
+    A400 : #07070c,
+    A700 : #07070c,
+  )
+);
+@function main-palette($key: $palette) {
+  @return map-get($palette, $key);
+}
+@function main-contrast($key: $palette) {
+  @return map-get(map-get($palette, contrast), $key);
+}
+
+//Accent palette
+$accent-palette: (
+  50 : #feb7b7,
+  100 : #fea8a8,
+  200 : #fe9a99,
+  300 : #fd8b89,
+  400 : #fd7c7a,
+  500 : #fd6d6b,
+  600 : #fd5e5c,
+  700 : #fc4f4d,
+  800 : #fc403e,
+  900 : #fc312f,
   A100 : #ffffff,
-  A200 : #dbeaff,
-  A400 : #a8ccff,
-  A700 : #8fbdff,
+  A200 : #fea8a8,
+  A400 : #fea8a8,
+  A700 : #fea8a8,
   contrast: (
     50 : #000000,
     100 : #000000,
@@ -32,69 +73,46 @@ $main-palette: (
     A700 : #000000,
   )
 );
+@function accent-palette($key: $accent-palette) {
+  @return map-get($accent-palette, $key);
+}
+@function accent-contrast($key: $accent-palette) {
+  @return map-get(map-get($accent-palette, contrast), $key);
+}
 
-$divider: #E5E5E5;
+:root {
+  --main-color: #687089;
+  --main-bg: #F2F4F5;
+  --boxed-width: 1140px;
+}
+$main-color: #687089;
+$main-bg: #F2F4F5;
+$boxed-width: 1140px;
 
-$black: #192A3E;
-$table-black: #323C47;
-$table-gray: #9E9E9E;
-
-$dark-blue-text: #334d63;
-$gray: #90A0B7;
-$icon-gray: rgba(0, 0, 0, 0.54);
-$icon-light-gray: rgba(0, 0, 0, 0.24);
-
-$white: #FFFFFF;
+$success-color: #27AE60;
+$success-contrast: #E3F5EB;
+$info-color: #64B5F6;
+$info-contrast: #000;
+$warning-color: #e9e165;
+$warning-contrast: #000;
+$error-color: #FD4745;
+$error-contrast: #FFEBEB;
 
 //Main
 $main-fs: 14px;
-$main-ff: 'Roboto', sans-serief;
-
+$main-ff: 'Lato', sans-serif;
 $main-fw: 400;
-$medium-fw: 500;
-$semibold-fw: 600;
-
 $module: 10px;
 $main-lh: ($module * 2 / $main-fs);
 $module-rem: ($module / $main-fs) * 1rem;
+$shape: 15px;
+$shadow: 0 18px 24px rgba(#000,.12);
+$shadow-hover: 0px 8px 24px rgba(#000,.12);
 $animation: ease-in-out;
 
-$primary-color:#2196F3;
-$primary-color-dark: #1976D2;
-$main-bg: #FBFCFD;
-$main-bg-dark: #2B3648;
-$main-color: rgba(0, 0, 0, 0.6);
-$main-color-dark: #56657F;
-$boxed-width: 1140px;
-
-$side-nav-width: toRem(256px);
-$side-nav-width-tablet: toRem(640px);
-$side-nav-width-mobile: toRem(304px);
-$side-nav-bg-dark: #212936;
-
-$top-bar-height: toRem(56px);
-$top-nav-bg-dark: #212936;
-
-:root {
-  --main-color: #90A0B7;
-  --main-bg: #E5E5E5;
-  --boxed-width: 1140px;
-}
-
-$shape: 4px;
-$shadow: 6px 6px 20px 0 rgba(0, 0, 0, 0.08);
-$secondary-shadow: 0px 2px 4px rgba(0, 0, 0, 0.14), 
-                   0px 3px 4px rgba(0, 0, 0, 0.12), 
-                   0px 1px 5px rgba(0, 0, 0, 0.2);
-$shadow-hover: 3px 3px 10px 0 rgba(0, 0, 0, 0.15);
-
-$animation: ease-in-out;
-
-//Headers
-$headers-ff: $main-ff;
-$headers-fw: $medium-fw;
-$header-color: rgba(0, 0, 0, 0.87);
-$header-color-dark: #AFBDD1;
+//Second
+$second-ff: $main-ff;
+$secondary-color: #A2A5B2;
 
 //Media
 $max543 : only screen and (max-width: 543px);
@@ -105,3 +123,16 @@ $max991 : only screen and (max-width: 991px);
 $min992 : only screen and (min-width: 992px);
 $max1199 : only screen and (max-width: 1199px);
 $min1200 : only screen and (min-width: 1200px);
+
+//Headers
+$headers-ff: $second-ff;
+$headers-fw: 700;
+$header-color: #303139;
+
+//Navbar
+$navbar-bg: #eeeeef;
+$navbar-color: rgba(main-palette(500),.5);
+$vertical-navbar-mini-width: $module-rem * 10;
+$vertical-navbar-width: $module-rem * 24;
+
+
