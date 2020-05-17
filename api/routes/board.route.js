@@ -25,22 +25,23 @@ boardRoutes.route('/add').post(function (req, res) {
     });
 });
 
-boardRoutes.route('/get/:name').get(function (req, res) {
-  let name = req.params.name;
-  Board.find( { name : { name } }, function (err, board) {
-    res.json(board);
+boardRoutes.route('/get/:id').get(function (req, res) {
+  Board.findById(req.params.id, function(err, board) {
+    if (!board)
+      return next(new Error('Could not load Document'));
+    else {
+      res.json(board);
+    }
   });
 });
 
 boardRoutes.route('/update/:id').post(function (req, res) {
-  Board.findById(req.params.id, function(err, next, board) {
+  Board.findById(req.params.id, function(err, board) {
     if (!board)
       return next(new Error('Could not load Document'));
     else {
-      board.name = req.body.name;
-      board.address = req.body.address;
-      board.threadList = req.body.threadList;
-
+      board.threadList.push(req.body.index);
+      
       board.save().then(board => {
         res.json('Update complete');
       })

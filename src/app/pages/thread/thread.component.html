@@ -1,0 +1,12 @@
+<ng-container *ngIf="thread">
+  <p>{{thread._id}}</p>
+
+  <form [formGroup]="threadForm">
+    <label>Enter text</label>
+    <input type="text" class="form-control" formControlName="threadText" #threadText>
+  
+    <button (click)="postMessage(threadText.value)"
+      [disabled]="threadForm.invalid" 
+      class="btn btn-primary">Create thread</button>
+  </form>
+</ng-container>

@@ -5,18 +5,30 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class BoardService {
+  uri: string;
 
-  uri = 'http://localhost:4000/board';
-
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient
+  ) {
+    this.uri = 'http://localhost:4000/board';
+  }
 
   getBoards() {
     return this.http.get(`${this.uri}`);
   }
 
+  getBoard(id) {
+    return this.http.get(`${this.uri}/get/${id}`);
+  }
+
+  updateBoard(id, threadIndex) {
+    this.http.post(`${this.uri}/update/${id}`, {index: threadIndex})
+      .subscribe(res => console.log('Update board: ' + id + ' with thread: ' + threadIndex));
+  }
+
   addBoard(name, address, threadList) {
     const board = { name, address, threadList };
     this.http.post(`${this.uri}/add`, board)
-      .subscribe(res => console.log('Add ' + board.name));
+      .subscribe(res => console.log('Update' + board.name));
   }
 }

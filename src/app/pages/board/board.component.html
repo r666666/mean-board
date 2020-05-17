@@ -1,0 +1,17 @@
+<ng-container *ngIf="board">
+
+  <p>{{board.name}}</p>
+
+  <form [formGroup]="threadForm">
+    <label>Enter text</label>
+    <input type="text" class="form-control" formControlName="threadText" #threadText [(ngModel)] = "thread.text" />
+  
+    <button (click)="addThread(threadText.value)"
+      [disabled]="threadForm.invalid" 
+      class="btn btn-primary">Create thread</button>
+  </form>
+
+  <li class="thread-wrap" *ngFor="let thread of board.threadList">
+    <a class="thread-link" routerLink="{{ thread }}">{{ thread }}</a>
+  </li>
+</ng-container>
