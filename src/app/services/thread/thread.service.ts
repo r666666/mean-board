@@ -12,8 +12,7 @@ export class ThreadService {
 
   constructor(
     private http: HttpClient,
-    private bs: BoardService,
-    private router: Router
+    private bs: BoardService
   ) { }
 
   getGlobalIndex() {
@@ -40,15 +39,16 @@ export class ThreadService {
     });
   }
 
-  postMessage(text, id) {
-    // this.getGlobalIndex().subscribe(index => {
-    //   const thread = {
+  postMessage(id, text, threadData) {
+    this.getGlobalIndex().subscribe(index => {
+      const thread = {
+        'index': index,
+        'text': text
+      };
+      threadData.push(thread);
 
-    //   };
-    //   this.http.post(`${this.uri}/post/${id}`, thread)
-    //     .subscribe(res => console.log('Post message in thread: ' + index));
-
-    //   this.bs.updateBoard(id, index);
-    // });
+      this.http.post(`${this.uri}/post/${id}`, { 'threadData': threadData})
+        .subscribe(res => console.log('Add post: ' + index));
+    });
   }
 }

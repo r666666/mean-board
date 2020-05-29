@@ -40,7 +40,7 @@ threadRoutes.route('/get/:id').get(function (req, res) {
 });
 
 threadRoutes.route('/post/:id').post(function (req, res) {
-  Thread.findById(req.params.id, function(err, board) {
+  Thread.findById(req.params.id, function(err, thread) {
     if (!thread)
       return next(new Error('Could not load Document'));
     else {

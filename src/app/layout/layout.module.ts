@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 
 import { PublicLayoutComponent } from './public';
 import { BaseLayoutComponent } from './base-layout/base-layout.component';
+
 @NgModule({
   declarations: [
     PublicLayoutComponent,

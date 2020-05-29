@@ -14,7 +14,9 @@ import { IThread } from '../../interfaces/thread';
 })
 export class PageThreadComponent extends BasePageComponent implements OnInit {
   thread: IThread;
-  threadForm: FormGroup;
+  threadData: any;
+  postForm: FormGroup;
+  postText: any;
 
   constructor(
     bs: BoardService,
@@ -24,18 +26,27 @@ export class PageThreadComponent extends BasePageComponent implements OnInit {
   ) {
     super(bs, ts, route);
 
-    this.threadForm = this.fb.group({
-      threadText: ['', Validators.required ]
+    this.postForm = this.fb.group({
+      postText: ['', Validators.required ]
     });
   }
 
   ngOnInit() {
     this.ts.getThread(this.currentThreadId).subscribe((res: IThread) => {
       this.thread = res;
+      this.threadData = this.thread.threadData;
     });
   }
 
-  postMessage(threadText) {
-    this.ts.postMessage(threadText, this.currentThreadId);
+  postMessage(text) {
+    this.ts.postMessage(this.currentThreadId, text, this.threadData);
+  }
+
+  createReply(index: number) {
+    if (this.postText) {
+      this.postText += '>>' + index + '>>\n';
+    } else {
+      this.postText = '>>' + index + '>>\n';
+    }
   }
 }

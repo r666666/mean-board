@@ -13,11 +13,6 @@ const PUBLIC_ROUTES: Routes = [
 ];
 
 export const ROUTES: Routes = [
-  // {
-  //   path: '',
-  //   redirectTo: '/',
-  //   pathMatch: 'full'
-  // },
   {
     path: '',
     component: PublicLayoutComponent,
