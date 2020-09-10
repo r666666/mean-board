@@ -27,10 +27,12 @@
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "express-bearer-token": "^2.4.0",
+    "formidable": "^1.2.2",
     "hangman": "^0.2.0",
     "mongoose": "^5.9.12",
     "rxjs": "~6.5.4",
     "save": "^2.4.0",
+    "shelljs": "^0.8.4",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"
   },

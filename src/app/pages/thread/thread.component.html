@@ -1,26 +1,16 @@
 <ng-container *ngIf="thread">
-  <p>{{thread._id}}</p>
+  <p>{{ thread._id }}</p>
 
-  <form [formGroup]="postForm">
-    <label>Enter text</label>
-    <input type="text" class="form-control" formControlName="postText" #postText>
-  
-    <button (click)="postMessage(postText.value)"
-      [disabled]="postForm.invalid" 
-      class="btn btn-primary">Create thread</button>
-  </form>
+  <app-form (sendFormEvent)="postMessage($event)" [reply]="reply"></app-form>
 
   <div class="post-wrap">
-    <div 
-      class="post-container"
+    <app-post
       *ngFor="let post of threadData"
-    >
-      <a 
-        class="index-wrap pr-3"
-        (click)="createReply(post.index)"
-      >{{ post.index }}</a>
-      <span class="text-wrap">{{ post.text }}</span>
-    </div>
+      [index]="post.index"
+      [text]="post.text"
+      [replies]="post.replies"
+      [fileData]="post.files"
+      (selectIdEvent)="setReply($event)"
+    ></app-post>
   </div>
-  
 </ng-container>

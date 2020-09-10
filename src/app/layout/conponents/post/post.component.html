@@ -1,0 +1,25 @@
+<div class="index">
+  <a (click)="selectId(index)">{{ index }}</a>
+</div>
+
+<div
+  class="images-wrap"
+  *ngFor="let file of files"
+  [ngSwitch]="file.type"
+>
+  <img height="100" width="100" *ngSwitchCase="'image'" [src]="file.path">
+  <div *ngSwitchCase="'video'">
+    <video controls>
+    <source [src]="file.path">
+    <p>No Preview Available</p>
+  </video>
+  </div>
+</div>
+
+<div class="content-wrap">
+  <div class="text" [innerHTML]="text"></div>
+</div>
+
+<div class="replies-wrap" *ngIf="replies">
+  <a class="reply" *ngFor="let reply of editReplies(replies)">{{ reply }}</a>
+</div>

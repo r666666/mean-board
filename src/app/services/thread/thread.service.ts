@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { BoardService } from '../board/board.service';
 
@@ -19,36 +18,44 @@ export class ThreadService {
     return this.http.get(`${this.uri}/getGlobalIndex`);
   }
 
-  getThread(id) {
+  getThread(id: string) {
     return this.http.get(`${this.uri}/get/${id}`);
   }
 
-  addThread(text, id) {
-    this.getGlobalIndex().subscribe(index => {
-      const thread = {
-        _id: index,
-        threadData: {
-          'index': index,
-          'text': text
-        }
-      };
-      this.http.post(`${this.uri}/add`, thread)
-        .subscribe(res => console.log('Add thread: ' + index));
+  addThread(boardAddress: string, data: FormData, threadId) {
+    let headerParam = new HttpHeaders();
+    headerParam = headerParam.set('id', threadId).set('board', boardAddress);
 
-      this.bs.updateBoard(id, index);
+    return new Promise((resolve, reject) => {
+      this.http.post(`${this.uri}/add`, data, { headers: headerParam })
+        .subscribe(res => {
+          console.log('Add thread: ' + threadId);
+
+          this.bs.updateBoard(boardAddress, threadId);
+
+          resolve();
+        });
     });
   }
 
-  postMessage(id, text, threadData) {
-    this.getGlobalIndex().subscribe(index => {
-      const thread = {
-        'index': index,
-        'text': text
-      };
-      threadData.push(thread);
+  updateThreadData(threadId: string, data: any) {
+    return new Promise((resolve, reject) => {
+      this.http.post(`${this.uri}/update/${threadId}`, data)
+        .subscribe(res => {
+          console.log('Update thread: ' + threadId);
 
-      this.http.post(`${this.uri}/post/${id}`, { 'threadData': threadData})
-        .subscribe(res => console.log('Add post: ' + index));
+          resolve();
+        });
     });
+  }
+
+  postMessage(threadId: string, data: FormData, postId: string, boardAddress: string) {
+    let headerParam = new HttpHeaders();
+    headerParam = headerParam.set('id', threadId).set('board', boardAddress);
+
+    this.http.post(`${this.uri}/post/${threadId}`, data, { headers: headerParam }) 
+      .subscribe(res => {
+        console.log('Add post: ' + postId);
+      });
   }
 }

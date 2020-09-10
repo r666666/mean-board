@@ -1,0 +1,24 @@
+@import 'variables';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  border-radius: 5px;
+  margin-bottom: $module-rem;
+  padding: $module-rem;
+
+  .index {
+  }
+  .content-wrap {
+    display: flex;
+    padding: $module-rem 0;
+    
+    .text {
+
+    }
+  }
+  .replies-wrap {
+    display: flex;
+  }
+}

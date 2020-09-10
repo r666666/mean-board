@@ -17,16 +17,16 @@ export class BoardService {
     return this.http.get(`${this.uri}`);
   }
 
-  getBoard(id) {
+  getBoard(id: string) {
     return this.http.get(`${this.uri}/get/${id}`);
   }
 
-  updateBoard(id, threadIndex) {
+  updateBoard(id: string, threadIndex: string) {
     this.http.post(`${this.uri}/update/${id}`, {index: threadIndex})
       .subscribe(res => console.log('Update board: ' + id + ' with thread: ' + threadIndex));
   }
 
-  addBoard(name, address, threadList) {
+  addBoard(name: string, address: string, threadList: string) {
     const board = { name, address, threadList };
     this.http.post(`${this.uri}/add`, board)
       .subscribe(res => console.log('Update' + board.name));

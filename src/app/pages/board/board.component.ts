@@ -17,11 +17,13 @@ export class PageBoardComponent extends BasePageComponent implements OnInit {
   board: IBoard;
   thread: any = {};
   index: any = {};
+  reply: number;
 
   constructor(
     bs: BoardService,
     ts: ThreadService,
     route: ActivatedRoute,
+    private router: Router,
     private fb: FormBuilder
   ) {
     super(bs, ts, route);
@@ -37,7 +39,9 @@ export class PageBoardComponent extends BasePageComponent implements OnInit {
     });
   }
 
-  addThread(threadText) {
-    this.ts.addThread(threadText, this.board._id);
+  addThread(data: any) {
+    this.ts.addThread(this.board._id, data.postData, data.index).then(
+      res => this.router.navigate([this.board._id + '/' + data.index])
+    );
   }
 }
