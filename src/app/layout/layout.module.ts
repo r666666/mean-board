@@ -3,6 +3,8 @@ import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
+
 import { PublicLayoutComponent } from './public';
 import { BaseLayoutComponent } from './base-layout';
 import { PostComponent } from './conponents/post';
@@ -21,7 +23,8 @@ import { DragDirective } from './conponents/form/drag-drop.directive';
     CommonModule,
     RouterModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ScrollToModule.forRoot()
   ],
   exports: [
     PostComponent,

@@ -15,10 +15,18 @@
     padding: $module-rem 0;
     
     .text {
-
+    }
+    .link {
+      color: $error-color;
+      cursor: pointer;
     }
   }
   .replies-wrap {
     display: flex;
+
+    .reply {
+      color: $error-color;
+      cursor: pointer;
+    }
   }
 }

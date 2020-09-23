@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-post',
@@ -9,6 +10,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 export class PostComponent implements OnInit {
   files: any;
   apiUrl: string;
+  parsedText: string[];
 
   @Input() index: string;
   @Input() text: string;
@@ -22,7 +24,7 @@ export class PostComponent implements OnInit {
     this.selectIdEvent = new EventEmitter<string>();
 
     this.files = [];
-    this.apiUrl = 'http://localhost:4000';
+    this.apiUrl = environment.backendUrl;
   }
 
   ngOnInit() {
@@ -31,10 +33,12 @@ export class PostComponent implements OnInit {
         const tempFile = {
           path: this.sanitizer.bypassSecurityTrustResourceUrl(this.apiUrl + file.path),
           type: file.type
-        }
+        };
         this.files.push(tempFile);
       });
     }
+
+    this.parsedText = this.text.split(/>>(.*?)>>/g);
   }
 
   selectId(value: string) {
@@ -53,5 +57,9 @@ export class PostComponent implements OnInit {
     });
 
     return newReplies;
+  }
+
+  isNumeric(text: string) {
+    return /^\d+$/.test(text);
   }
 }

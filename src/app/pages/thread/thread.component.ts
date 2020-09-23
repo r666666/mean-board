@@ -14,7 +14,6 @@ import { IThread } from '../../interfaces/thread';
 export class PageThreadComponent extends BasePageComponent implements OnInit {
   thread: IThread;
   threadData: any;
-  postText: any;
   reply: number;
 
   constructor(
@@ -28,7 +27,7 @@ export class PageThreadComponent extends BasePageComponent implements OnInit {
   ngOnInit() {
     this.ts.getThread(this.currentThreadId).subscribe((res: IThread) => {
       this.thread = res;
-      this.threadData = this.thread.threadData;
+      this.threadData = res.threadData;
     });
   }
 
@@ -36,11 +35,17 @@ export class PageThreadComponent extends BasePageComponent implements OnInit {
     if (data.replies.length > 0) {
       this.modifyData(data.replies, data.index);
       this.ts.updateThreadData(this.currentThreadId, this.threadData).then(
-        res => this.ts.postMessage(this.currentThreadId, data.postData, data.index, this.boardAddress)
+        res => this.post(data)
       );
     } else {
-      this.ts.postMessage(this.currentThreadId, data.postData, data.index, this.boardAddress);
+      this.post(data);
     }
+  }
+
+  post(data) {
+    this.ts.postMessage(this.currentThreadId, data.postData, data.index, this.boardAddress).then(
+      res => this.ngOnInit()
+    );
   }
 
   setReply(index: number) {

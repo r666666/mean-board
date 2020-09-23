@@ -18,7 +18,6 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class FormComponent implements OnInit, OnChanges {
   postForm: FormGroup;
-  postText: string;
   fileList: any[];
 
   @Input() reply;
@@ -48,19 +47,25 @@ export class FormComponent implements OnInit, OnChanges {
   sendForm() {
     this.ts.getGlobalIndex().subscribe(newIndex => {
       const formData = new FormData();
-
-      const values = this.parseText(this.postText);
+      let replyList = '';
 
       this.fileList.forEach(file => {
         formData.append('file', file.file, file.file.name);
       });
       formData.append('index', newIndex.toString());
-      formData.append('text', values.text);
+      formData.append('text', this.postForm.value.postText);
+
+      // get relies from text
+      if (this.postForm.value.postText.match(/>>(.*?)>>/g)) {
+        replyList = this.postForm.value.postText.match(/>>(.*?)>>/g).map((val) => {
+          return val.replace(/>>/g, '');
+        });
+      }
 
       this.sendFormEvent.emit({
         postData: formData,
         index: newIndex.toString(),
-        replies: values.replies
+        replies: replyList
       });
 
       this.postForm.reset();
@@ -69,10 +74,10 @@ export class FormComponent implements OnInit, OnChanges {
 
   appendReply(index: number) {
     if (index) {
-      if (this.postText) {
-        this.postText = this.postText + '\n>>' + index + '>>\r';
+      if (this.postForm.value.postText) {
+        this.postForm.controls.postText.setValue(this.postForm.value.postText + '\n>>' + index + '>>\r');
       } else {
-        this.postText = '>>' + index + '>>\r';
+        this.postForm.controls.postText.setValue('>>' + index + '>>\r');
       }
     }
   }
@@ -82,17 +87,5 @@ export class FormComponent implements OnInit, OnChanges {
       const url = this.sanitizer.bypassSecurityTrustUrl(window.URL.createObjectURL(file));
       this.fileList.push({ file, url });
     }
-  }
-
-  parseText(text: string) {
-    const replyList = [];
-    const newText = text.replace(/>>(.*?)>>/g, (a, inside) => {
-      replyList.push(inside.replace(/'/g, '"'));
-      return '<a href="' + inside.replace(/'/g, '"') + '">' + '>>' + inside.replace(/'/g, '"') + '<a/>';
-    });
-    return {
-      text: newText,
-      replies: replyList
-    };
   }
 }

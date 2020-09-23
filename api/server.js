@@ -22,7 +22,7 @@ app.use(express.static(path.join(__dirname, '../dist/meanChan')));
 
 app.use('/board', boardRoute);
 app.use('/thread', threadRoute);
-app.use('/files', express.static(__dirname + '/uploads'));
+app.use('/files', express.static(__dirname + '../../uploads'));
 
 app.use('/', function(req, res){
   res.sendFile(path.join(__dirname, '../dist/meanChan', 'index.html'));

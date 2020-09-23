@@ -113,12 +113,12 @@ threadRoutes.route('/post/:id').post(function (req, res) {
 });
 
 function handleUpload(file, board, id) {
-  shell.mkdir('-p', 'uploads/' + board);
-  shell.mkdir('-p', 'uploads/' + board + '/' + id);
+  shell.mkdir('-p', '../uploads/' + board);
+  shell.mkdir('-p', '../uploads/' + board + '/' + id);
 
   const extension = file.name.split('.').pop();
 
-  let fileName = fs.readdirSync('uploads/' + board + '/' + id).length + '.' + extension;
+  let fileName = fs.readdirSync('../uploads/' + board + '/' + id).length + '.' + extension;
   let fileType;
 
   if (extension === 'png' || extension === 'jpg' || extension === 'gif') {
@@ -129,12 +129,12 @@ function handleUpload(file, board, id) {
     fileType = 'file';
   }
   
-  fs.writeFile('uploads/' + board + '/' + id + '/' + fileName, fs.readFileSync(file.path), 'binary', function(err) {
+  fs.writeFile('../uploads/' + board + '/' + id + '/' + fileName, fs.readFileSync(file.path), 'binary', function(err) {
     if (err) { throw err; }
   });
 
   return {
-    path: '/../files/' + board + '/' + id + '/' + fileName,
+    path: '/files/' + board + '/' + id + '/' + fileName,
     type: fileType
   };
 }

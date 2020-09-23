@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from '../../../environments/environment';
 
 import { BoardService } from '../board/board.service';
 
@@ -7,12 +8,14 @@ import { BoardService } from '../board/board.service';
   providedIn: 'root'
 })
 export class ThreadService {
-  uri = 'http://localhost:4000/thread';
+  uri: string;
 
   constructor(
     private http: HttpClient,
     private bs: BoardService
-  ) { }
+  ) {
+    this.uri = environment.backendUrl + '/thread';
+  }
 
   getGlobalIndex() {
     return this.http.get(`${this.uri}/getGlobalIndex`);
@@ -50,12 +53,16 @@ export class ThreadService {
   }
 
   postMessage(threadId: string, data: FormData, postId: string, boardAddress: string) {
-    let headerParam = new HttpHeaders();
-    headerParam = headerParam.set('id', threadId).set('board', boardAddress);
+    return new Promise((resolve, reject) => {
+      let headerParam = new HttpHeaders();
+      headerParam = headerParam.set('id', threadId).set('board', boardAddress);
 
-    this.http.post(`${this.uri}/post/${threadId}`, data, { headers: headerParam }) 
-      .subscribe(res => {
-        console.log('Add post: ' + postId);
-      });
+      this.http.post(`${this.uri}/post/${threadId}`, data, { headers: headerParam })
+        .subscribe(res => {
+          console.log('Add post: ' + postId);
+
+          resolve();
+        });
+    });
   }
 }

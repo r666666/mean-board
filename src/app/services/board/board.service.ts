@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ export class BoardService {
   constructor(
     private http: HttpClient
   ) {
-    this.uri = 'http://localhost:4000/board';
+    this.uri = environment.backendUrl + '/board';
   }
 
   getBoards() {
