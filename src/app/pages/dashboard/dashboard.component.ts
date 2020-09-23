@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 import { BoardService } from '../../services/board/board.service';
+import { ThreadService } from '../../services/thread/thread.service';
 import { BasePageComponent } from '../base-page';
 import { IBoard } from '../../interfaces/board';
 
@@ -10,10 +12,13 @@ import { IBoard } from '../../interfaces/board';
   styleUrls: ['./dashboard.component.scss']
 })
 export class PageDashboardComponent extends BasePageComponent implements OnInit {
-
   boards: IBoard[];
 
-  constructor( bs: BoardService ) { super(bs); }
+  constructor(
+    bs: BoardService,
+    ts: ThreadService,
+    route: ActivatedRoute,
+  ) { super(bs, ts, route); }
 
   ngOnInit() {
     this.bs

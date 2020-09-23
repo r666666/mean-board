@@ -2,20 +2,20 @@
 
 //Main palette
 $palette: (
-  50 : #b9b9d8,
-  100 : #a8a8cf,
-  200 : #9898c6,
-  300 : #8787bd,
-  400 : #7777b4,
-  500 : #6767ab,
-  600 : #5858a0,
-  700 : #4f4f8f,
-  800 : #46467f,
-  900 : #3d3d6f,
-  A100 : #52ffff,
-  A200 : #1fffff,
-  A400 : #00ebeb,
-  A700 : #00d2d2,
+  50 : #e7eaee,
+  100 : #c2cbd4,
+  200 : #9aa8b8,
+  300 : #72859b,
+  400 : #536a85,
+  500 : #355070,
+  600 : #304968,
+  700 : #28405d,
+  800 : #223753,
+  900 : #162741,
+  A100 : #80aeff,
+  A200 : #4d8eff,
+  A400 : #1a6eff,
+  A700 : #005eff,
   contrast: (
     50 : #07070c,
     100 : #07070c,
@@ -42,20 +42,20 @@ $palette: (
 
 //Accent palette
 $accent-palette: (
-  50 : #feb7b7,
-  100 : #fea8a8,
-  200 : #fe9a99,
-  300 : #fd8b89,
-  400 : #fd7c7a,
-  500 : #fd6d6b,
-  600 : #fd5e5c,
-  700 : #fc4f4d,
-  800 : #fc403e,
-  900 : #fc312f,
+  50 : #fcedee,
+  100 : #f7d3d4,
+  200 : #f2b5b7,
+  300 : #ed979a,
+  400 : #e98185,
+  500 : #e56b6f,
+  600 : #e26367,
+  700 : #de585c,
+  800 : #da4e52,
+  900 : #d33c40,
   A100 : #ffffff,
-  A200 : #fea8a8,
-  A400 : #fea8a8,
-  A700 : #fea8a8,
+  A200 : #ffedee,
+  A400 : #ffbabc,
+  A700 : #ffa1a3,
   contrast: (
     50 : #000000,
     100 : #000000,
@@ -81,11 +81,11 @@ $accent-palette: (
 }
 
 :root {
-  --main-color: #687089;
+  --main-color: #355070;
   --main-bg: #F2F4F5;
   --boxed-width: 1140px;
 }
-$main-color: #687089;
+$main-color: #355070;
 $main-bg: #F2F4F5;
 $boxed-width: 1140px;
 
@@ -127,7 +127,7 @@ $min1200 : only screen and (min-width: 1200px);
 //Headers
 $headers-ff: $second-ff;
 $headers-fw: 700;
-$header-color: #303139;
+$header-color: #223753;
 
 //Navbar
 $navbar-bg: #eeeeef;

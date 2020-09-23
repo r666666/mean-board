@@ -1,0 +1,36 @@
+<div class="index">
+  <a [id]="index" (click)="selectId(index)">{{ index }}</a>
+</div>
+
+<div
+  class="images-wrap"
+  *ngFor="let file of files"
+  [ngSwitch]="file.type"
+>
+  <img height="100" width="100" *ngSwitchCase="'image'" [src]="file.path">
+  <div *ngSwitchCase="'video'">
+    <video controls>
+    <source [src]="file.path">
+    <p>No Preview Available</p>
+  </video>
+  </div>
+</div>
+
+<div class="content-wrap">
+  <ng-container *ngFor="let text of parsedText">
+    <div *ngIf="!isNumeric(text)" class="text">{{ text }}</div>
+    <div
+      *ngIf="isNumeric(text)"
+      class="link"
+      [ngxScrollTo]="text"
+    >{{ text }}</div>
+  </ng-container>
+</div>
+
+<div class="replies-wrap" *ngIf="replies">
+  <a
+    class="reply"
+    *ngFor="let reply of editReplies(replies); let i = index"
+    [ngxScrollTo]="replies[i]"
+  >{{ reply }}</a>
+</div>

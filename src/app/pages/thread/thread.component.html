@@ -1,0 +1,16 @@
+<ng-container *ngIf="thread">
+  <p>{{ thread._id }}</p>
+
+  <app-form (sendFormEvent)="postMessage($event)" [reply]="reply"></app-form>
+
+  <div class="post-wrap">
+    <app-post
+      *ngFor="let post of threadData"
+      [index]="post.index"
+      [text]="post.text"
+      [replies]="post.replies"
+      [fileData]="post.files"
+      (selectIdEvent)="setReply($event)"
+    ></app-post>
+  </div>
+</ng-container>

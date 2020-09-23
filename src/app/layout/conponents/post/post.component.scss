@@ -1,0 +1,32 @@
+@import 'variables';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  border-radius: 5px;
+  margin-bottom: $module-rem;
+  padding: $module-rem;
+
+  .index {
+  }
+  .content-wrap {
+    display: flex;
+    padding: $module-rem 0;
+    
+    .text {
+    }
+    .link {
+      color: $error-color;
+      cursor: pointer;
+    }
+  }
+  .replies-wrap {
+    display: flex;
+
+    .reply {
+      color: $error-color;
+      cursor: pointer;
+    }
+  }
+}

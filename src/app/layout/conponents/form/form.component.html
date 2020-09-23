@@ -1,0 +1,36 @@
+<form [formGroup]="postForm">
+  <label>Enter text</label>
+  <textarea
+    type="text"
+    class="form-control"
+    formControlName="postText"
+    required
+    rows="5"
+  ></textarea>
+
+  <div class="dropzone" appDrag (files)="uploadFiles($event)">
+    <span class="text">Drop an image here</span>
+    <span class="text secondary">or</span>
+    <div class="upload-button" (click)="fileInput.click()">
+      <span class="text primary">Browse</span>
+      <input
+        hidden
+        type="file"
+        formControlName="fileInput"
+        #fileInput
+        (change)="uploadFiles($event.target.files)"
+        multiple
+      >
+    </div>
+  </div>
+
+  <div *ngFor="let file of fileList">
+    <img *ngIf="file" [src]="file.url" width="100px" height="100px">
+  </div>
+
+  <button 
+    (click)="sendForm()"
+    [disabled]="postForm.invalid" 
+    class="btn btn-primary"
+  >Send</button>
+</form>

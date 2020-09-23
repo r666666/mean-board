@@ -1,0 +1,10 @@
+<ng-container *ngIf="board">
+
+  <p>{{board.name}}</p>
+
+  <app-form (sendFormEvent)="addThread($event)" [reply]="reply"></app-form>
+
+  <li class="thread-wrap" *ngFor="let thread of board.threadList">
+    <a class="thread-link" routerLink="{{ thread }}">{{ thread }}</a>
+  </li>
+</ng-container>
